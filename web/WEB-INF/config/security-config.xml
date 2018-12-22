@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns:beans="http://www.springframework.org/schema/beans"
+
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns="http://www.springframework.org/schema/security" xmlns:mvc="http://www.springframework.org/schema/c"
+             xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/security
+       http://www.springframework.org/schema/security/spring-security.xsd">
+
+    <http auto-config="true" use-expressions="true"  >
+        <intercept-url pattern="/security/**" access="hasRole('ADMIN')"/>
+
+        <intercept-url pattern="/user/**" access="hasRole('USER')"/>
+
+        <form-login login-page="/login"
+                    username-parameter="j_username"
+                    password-parameter="j_password"
+                    login-processing-url="/j_spring_security_check"
+                    authentication-failure-url="/login?error=true"
+                    authentication-success-handler-ref="userAuthenticationSuccessSecurityHandler"
+        />
+
+        <logout logout-url="/j_spring_security_logout" logout-success-url="/"/>
+
+        <remember-me key="tokenId" token-validity-seconds="300"/>
+
+        <csrf disabled="true"/>
+
+    </http>
+
+    <beans:bean id="userAuthenticationSuccessSecurityHandler" class="com.md.service.handler.UserAuthenticationSuccessSecurityHandler"/>
+
+    <jdbc-user-service id="jdbcUserService" data-source-ref="dataSource"
+                       users-by-username-query="SELECT USERNAME, PASSWORD, ENABLED FROM USER WHERE USERNAME=?"
+                       authorities-by-username-query="SELECT U.USERNAME, A.AUTHORITY
+        	 FROM AUTHORITIES A, USER U WHERE U.USERNAME = A.USERNAME AND U.USERNAME = ? "/>
+
+    <authentication-manager alias="authenticationManager">
+        <authentication-provider user-service-ref="jdbcUserService"/>
+    </authentication-manager>
+
+
+</beans:beans>
