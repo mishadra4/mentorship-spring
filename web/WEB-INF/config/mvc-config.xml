@@ -18,16 +18,19 @@
 
     <context:component-scan base-package="com.md" />
 
+    <mvc:annotation-driven/>
+
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="order" value="1" />
         <property name="prefix" value="/WEB-INF/view/" />
         <property name="suffix" value=".jsp" />
     </bean>
 
-    <mvc:view-controller path="/" view-name="/page/login"/>
-    <mvc:view-controller path="/login" view-name="/page/login"/>
-    <mvc:view-controller path="/success" view-name="/page/success"/>
-    <mvc:view-controller path="/update" view-name="/page/updateBookPage"/>
+    <mvc:view-controller path="/" view-name="page/login"/>
+    <mvc:view-controller path="/login" view-name="page/login"/>
+    <mvc:view-controller path="/success" view-name="page/success"/>
+    <mvc:view-controller path="/update" view-name="page/updateBookPage"/>
+    <mvc:view-controller path="/register" view-name="page/register"/>
 
     <tx:annotation-driven transaction-manager="transactionManager" />
 

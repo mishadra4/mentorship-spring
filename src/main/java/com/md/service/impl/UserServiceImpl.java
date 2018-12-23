@@ -1,38 +1,38 @@
 package com.md.service.impl;
 
-import com.md.dao.UserDao;
-import com.md.dao.impl.UserDaoImpl;
 import com.md.exception.AlreadyRegisteredException;
+import com.md.facade.dto.UserDto;
 import com.md.model.User;
+import com.md.model.VerificationToken;
 import com.md.service.UserService;
-import org.apache.commons.lang.StringUtils;
+import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.function.Function;
-
+@Service
 public class UserServiceImpl implements UserService {
 
-    UserDao userDao = new UserDaoImpl();
-
-    private List<String> mutableHash = new ArrayList<>();
-
-    private Function<String, Boolean> update = hash -> {
-        mutableHash.stream().findFirst().ifPresent(hash::equals);
-        return true;
-    };
 
     @Override
-    public void saveUser(User user) {
-        if (isRegistered(user)) {
-            throw new AlreadyRegisteredException();
-        }
-        userDao.saveUser(user);
+    public User registerNewUserAccount(UserDto accountDto) throws AlreadyRegisteredException {
+        return null;
     }
 
     @Override
-    public boolean isRegistered(User user) {
-        return !StringUtils.isEmpty(userDao.getHashPassword(user.getUsername()));
+    public User getUser(String verificationToken) {
+        return null;
     }
 
+    @Override
+    public void saveRegisteredUser(User user) {
+
+    }
+
+    @Override
+    public void createVerificationToken(User user, String token) {
+
+    }
+
+    @Override
+    public VerificationToken getVerificationToken(String VerificationToken) {
+        return null;
+    }
 }

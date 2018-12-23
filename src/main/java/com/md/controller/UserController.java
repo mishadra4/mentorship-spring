@@ -1,11 +1,8 @@
 package com.md.controller;
 
-import com.md.model.User;
+import org.springframework.stereotype.Controller;
 
+@Controller
 public interface UserController {
-
-    void saveUser(User user);
-
-    boolean isRegistered(User user);
 
 }

@@ -1,6 +1,6 @@
 package com.md.controller;
 
-import com.md.dao.ReaderDAO;
+import com.md.dao.ReaderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -16,7 +16,7 @@ import javax.annotation.security.RolesAllowed;
 public class SecurityController {
 
     @Autowired
-    private ReaderDAO readerDAO;
+    private ReaderRepository readerRepository;
 
     @RequestMapping(value = "/")
     public ModelAndView login(){
@@ -36,9 +36,7 @@ public class SecurityController {
         return new ModelAndView("form/teacher");
     }
 
-
-    public void setReaderDAO(ReaderDAO readerDAO) {
-        this.readerDAO = readerDAO;
+    public void setReaderRepository(ReaderRepository readerRepository) {
+        this.readerRepository = readerRepository;
     }
-
 }

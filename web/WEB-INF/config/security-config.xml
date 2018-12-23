@@ -29,7 +29,7 @@
 
     </http>
 
-    <beans:bean id="userAuthenticationSuccessSecurityHandler" class="com.md.service.handler.UserAuthenticationSuccessSecurityHandler"/>
+    <beans:bean id="userAuthenticationSuccessSecurityHandler" class="com.md.security.UserAuthenticationSuccessSecurityHandler"/>
 
     <jdbc-user-service id="jdbcUserService" data-source-ref="dataSource"
                        users-by-username-query="SELECT USERNAME, PASSWORD, ENABLED FROM USER WHERE USERNAME=?"

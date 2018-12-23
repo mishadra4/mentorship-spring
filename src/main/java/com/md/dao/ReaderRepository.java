@@ -1,4 +1,4 @@
-package com.md.repository;
+package com.md.dao;
 
 import com.md.model.Reader;
 import org.springframework.data.repository.CrudRepository;

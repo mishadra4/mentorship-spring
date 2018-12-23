@@ -3,8 +3,9 @@ package com.md.model;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
-import javax.persistence.*;
-import java.util.List;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "READER")
